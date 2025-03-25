@@ -238,6 +238,11 @@ class StudentManagementSystem:
             degree = self.entries["degree_program"].get() or record[5]
             year = self.entries["year_level"].get() or record[6]
 
+            try:
+                datetime.strptime(birthday, "%m/%d/%Y")
+            except ValueError:
+                messagebox.showerror("Error", "Invalid Birthday! Format must be MM/DD/YYYY.")
+                return
 
             cursor.execute("""
                 UPDATE students 
