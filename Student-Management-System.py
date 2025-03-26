@@ -184,7 +184,7 @@ class StudentManagementSystem:
 
             # Validate Birthday: Must be valid age
             try:
-                if datetime.strptime(birthday, "%m/%d/%Y").year > datetime.now().year:
+                if datetime.strptime(birthday, "%m/%d/%Y").year > datetime.now().year-16:
                     raise ValueError
             except ValueError:
                 messagebox.showerror("Error", "Invalid Birthday! Invalid Birth Year.")
