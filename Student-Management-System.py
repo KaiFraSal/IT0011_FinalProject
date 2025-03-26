@@ -182,6 +182,14 @@ class StudentManagementSystem:
                 messagebox.showerror("Error", "Full Name must only contain letters and spaces!")
                 return
 
+            # Validate Birthday: Must be valid age
+            try:
+                if datetime.strptime(birthday, "%m/%d/%Y").year > datetime.now().year:
+                    raise ValueError
+            except ValueError:
+                messagebox.showerror("Error", "Invalid Birthday! Invalid Birth Year.")
+                return
+
             # Validate Birthday: Must be in MM/DD/YYYY format
             try:
                 datetime.strptime(birthday, "%m/%d/%Y")
@@ -238,6 +246,15 @@ class StudentManagementSystem:
             degree = self.entries["degree_program"].get() or record[5]
             year = self.entries["year_level"].get() or record[6]
 
+            # Validate Birthday: Must be valid age
+            try:
+                if datetime.strptime(birthday, "%m/%d/%Y").year > datetime.now().year-16:
+                    raise ValueError
+            except ValueError:
+                messagebox.showerror("Error", "Invalid Birthday! Invalid Birth Year.")
+                return
+
+            # Validate Birthday: Must be in MM/DD/YYYY format
             try:
                 datetime.strptime(birthday, "%m/%d/%Y")
             except ValueError:
